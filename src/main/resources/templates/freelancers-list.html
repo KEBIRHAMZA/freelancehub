@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Freelancers</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1 th:text="${title}"></h1>
+        <nav>
+            <a th:href="@{/freelance/}">Accueil</a> |
+            <a th:href="@{/freelance/missions}">Missions</a> |
+            <a th:href="@{/freelance/search}">Recherche AJAX</a>
+        </nav>
+    </header>
+    <main>
+        <p>Total : <strong th:text="${freelancers.size()}"></strong> freelancer(s)</p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th><th>Nom</th><th>Email</th>
+                    <th>Spécialité</th><th>Tarif/jour</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="f : ${freelancers}">
+                    <td th:text="${f.id}"></td>
+                    <td th:text="${f.name}"></td>
+                    <td th:text="${f.email}"></td>
+                    <td th:text="${f.specialty}"></td>
+                    <td th:text="${f.dailyRate + ' €'}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
