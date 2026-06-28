@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreelanceHub — Recherche AJAX</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/freelance-service.js" defer></script>
+    <script src="js/freelance-view.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>FreelanceHub — Recherche AJAX</h1>
+        <nav>
+            <a href="/freelance/freelancers">Vue Thymeleaf</a> |
+            <a href="/freelance/missions">Missions</a>
+        </nav>
+    </header>
+
+    <main style="padding: 24px;">
+
+        <!-- Informations de la réponse HTTP -->
+        <table class="data-table" style="width: auto; margin-bottom: 24px;">
+            <tr><td><strong>Status :</strong></td><td id="http-status">—</td></tr>
+            <tr><td><strong>Status Text :</strong></td><td id="http-status-text">—</td></tr>
+            <tr><td><strong>Content-Type :</strong></td><td id="http-content-type">—</td></tr>
+        </table>
+
+        <!-- Recherche freelancers par nom -->
+        <div class="search-form">
+            <h2>🔍 Rechercher un freelancer par nom</h2>
+            <br>
+            <input type="text" id="freelancer-name-input" placeholder="Ex: Ali, Sara...">
+            <button onclick="searchFreelancerByName()">Rechercher</button>
+        </div>
+
+        <!-- Recherche missions par statut -->
+        <div class="search-form">
+            <h2>🔍 Rechercher des missions par statut</h2>
+            <br>
+            <select id="mission-status-select">
+                <option value="">-- Choisir un statut --</option>
+                <option value="OPEN">OPEN</option>
+                <option value="IN_PROGRESS">IN_PROGRESS</option>
+                <option value="COMPLETED">COMPLETED</option>
+                <option value="CANCELLED">CANCELLED</option>
+            </select>
+            <button onclick="searchMissionsByStatus()">Filtrer</button>
+        </div>
+
+        <!-- Résultats -->
+        <div id="result-container"></div>
+
+    </main>
+</body>
+</html>
