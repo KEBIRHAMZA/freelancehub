@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Missions</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <header>
+        <h1 th:text="${title}"></h1>
+        <nav>
+            <a th:href="@{/freelance/}">Accueil</a> |
+            <a th:href="@{/freelance/freelancers}">Freelancers</a>
+        </nav>
+    </header>
+    <main>
+        <p>Total : <strong th:text="${missions.size()}"></strong> mission(s)</p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th><th>Titre</th><th>Client</th>
+                    <th>Budget</th><th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="m : ${missions}">
+                    <td th:text="${m.id}"></td>
+                    <td th:text="${m.title}"></td>
+                    <td th:text="${m.client}"></td>
+                    <td th:text="${m.budget + ' €'}"></td>
+                    <td>
+                        <span th:text="${m.status}"
+                              th:classappend="${m.status == 'OPEN'} ? 'badge-open' :
+                                             (${m.status == 'IN_PROGRESS'} ? 'badge-progress' :
+                                             'badge-done')">
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
