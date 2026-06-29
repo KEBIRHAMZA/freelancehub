@@ -14,11 +14,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class FreelanceServiceDefault implements FreelanceService {
 
-    private final FreelancerRepository freelancerRepo;
-    private final MissionRepository missionRepo;
-    private final SkillRepository skillRepo;
+    private FreelancerRepository freelancerRepo;
+    private MissionRepository missionRepo;
+    private SkillRepository skillRepo;
 
-    // Injection implicite par constructeur (un seul constructeur)
     public FreelanceServiceDefault(FreelancerRepository freelancerRepo,
                                    MissionRepository missionRepo,
                                    SkillRepository skillRepo) {
@@ -35,7 +34,8 @@ public class FreelanceServiceDefault implements FreelanceService {
     @Override
     public Freelancer getFreelancerById(int id) {
         Optional<Freelancer> f = freelancerRepo.findById(id);
-        return f.isPresent() ? f.get() : null;
+        if(f.isPresent()) return f.get();
+        return null;
     }
 
     @Override
@@ -61,7 +61,8 @@ public class FreelanceServiceDefault implements FreelanceService {
     @Override
     public Mission getMissionById(int id) {
         Optional<Mission> m = missionRepo.findById(id);
-        return m.isPresent() ? m.get() : null;
+        if(m.isPresent()) return m.get();
+        return null;
     }
 
     @Override
